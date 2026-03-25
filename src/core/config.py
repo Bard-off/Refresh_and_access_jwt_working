@@ -7,6 +7,7 @@ BASE_DIR = ptl.Path(__file__).parent.parent
 class Certs(BaseModel):
     path_to_private: ptl.Path = BASE_DIR / "certs" / "private.pem"
     path_to_public: ptl.Path = BASE_DIR / "certs" / "public.pem"
+    algorithm: str = "RS256"
 
 class Server(BaseModel):
     allow_credentails: bool = True

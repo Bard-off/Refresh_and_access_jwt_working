@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from core import settings
+from api.auth.rout import router as ro
 
 app = FastAPI()
-
+app.include_router(router=ro, tags=["Jwt"])
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.server.allow_origins,
@@ -15,4 +16,4 @@ app.add_middleware(
 
 if __name__ == "__main__":
     import uvicorn as uvi
-    uvi.run("app:app")
+    uvi.run("app:app", host=settings.server.host, port=settings.server.port, reload=settings.server.reload)
